@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  wiremock:
+    image: wiremock/wiremock:2.33.2
+    container_name: wm-api-football
+    ports:
+      - 8085:8080
+    volumes:
+      - type: bind
+        source: ./wiremock
+        target: /home/wiremock

@@ -1,0 +1,81 @@
+server:
+  servlet:
+    context-path: /api
+rest:
+  client:
+    api-football:
+      baseUrl: "http://localhost:8085/v3"
+      value: "ApiFootballTeam"
+spring:
+  application:
+    name: stats-data-collector
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5555/stats_data_collector?user=postgres&password=postgres}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+  jpa:
+    properties:
+      hibernate.hbm2ddl.auto: validate
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ssZ
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+  kafka:
+    auto-startup: ${KAFKA_AUTO_STARTUP:true}
+    bootstrap-servers: ${KAFKA_ENDPOINT:localhost:9092}
+    properties:
+      schema.registry.url: ${KAFKA_SCHEMA_REGISTRY:http://localhost:8086}
+      retries: 3
+    consumer:
+      group-id: "stats-data-collector"
+    listener:
+      missing-topics-fatal: false
+    topics:
+      consumers:
+        data-collected: "creditas.platform.data_collector.data_collected_v1"
+      producers:
+        serasa-consulta-varejo-pf-consulted: "creditas.platform.risk_data_analysis.serasa_consulta_varejo_pf_consulted_v1"
+
+logging:
+  level:
+    org:
+      zalando:
+        logbook: TRACE
+
+logbook:
+  exclude:
+    - /health
+    - /metrics
+    - /favicon.ico
+    - /swagger-resources/**
+    - /webjars/**
+    - /v2/api-docs
+    - /swagger-ui.html
+  obfuscate:
+    headers:
+      - Authorization
+      - X-Auth-User
+      - X-Request-Security-Context
+
+management:
+  endpoints:
+    web:
+      base-path: ~
+      exposure:
+        include: info,health,prometheus
+      path-mapping:
+        prometheus: /metrics
+  endpoint:
+    prometheus:
+      enabled: true
+
+eventlib:
+  password: ${KAFKA_SECRET}
+  producer: "risk-data-analysis"
+  username: ${KAFKA_KEY}
