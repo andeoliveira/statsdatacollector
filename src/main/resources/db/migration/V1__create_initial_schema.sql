@@ -14,13 +14,10 @@ CREATE TABLE "public".season (
 
 CREATE TABLE "public".league (
     id BIGINT NOT NULL,
-    season_id INT NOT NULL,
-    country_id INT NOT NULL,
     name VARCHAR NOT NULL,
+    type VARCHAR NOT NULL,
     logo VARCHAR NOT NULL,
-    CONSTRAINT pk_league PRIMARY KEY (id),
-    CONSTRAINT fk_season_league FOREIGN KEY (id) REFERENCES "public".season(id),
-    CONSTRAINT fk_country_league FOREIGN KEY (id) REFERENCES "public".country(id)
+    CONSTRAINT pk_league PRIMARY KEY (id)
 );
 
 CREATE SEQUENCE "public".country_seq

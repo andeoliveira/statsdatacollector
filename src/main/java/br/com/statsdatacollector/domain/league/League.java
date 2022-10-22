@@ -9,11 +9,33 @@ public class League {
 
     private String name;
 
+    private String type;
+
     private String logo;
 
-    private Country country;
+    public League Builder(Long id, String name, String type, String logo) {
+        this.setId(id);
+        this.setName(name);
+        this.setLogo(logo);
+        this.setType(type);
+        return this;
+    }
 
-    private Season season;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public Long getId() {
         return id;
@@ -31,27 +53,4 @@ public class League {
         this.name = name;
     }
 
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public Season getSeason() {
-        return season;
-    }
-
-    public void setSeason(Season season) {
-        this.season = season;
-    }
 }

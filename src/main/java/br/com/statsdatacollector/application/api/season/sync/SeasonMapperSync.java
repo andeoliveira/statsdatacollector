@@ -1,7 +1,5 @@
 package br.com.statsdatacollector.application.api.season.sync;
 
-import br.com.statsdatacollector.application.api.country.sync.CountryResponse;
-import br.com.statsdatacollector.domain.country.Country;
 import br.com.statsdatacollector.domain.season.Season;
 import org.springframework.stereotype.Component;
 
