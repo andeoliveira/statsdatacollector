@@ -12,7 +12,6 @@ public class CountryProcessor {
 
     private CountryRestClientPort countryRestClientPort;
 
-
     @Autowired
     CountryProcessor(
             CountryRepositoryPort countryRepositoryPort,

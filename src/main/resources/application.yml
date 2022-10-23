@@ -27,26 +27,32 @@ spring:
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
 
+management:
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        health: health
 logging:
   level:
     org:
       zalando:
         logbook: TRACE
 
-logbook:
-  exclude:
-    - /health
-    - /metrics
-    - /favicon.ico
-    - /swagger-resources/**
-    - /webjars/**
-    - /v2/api-docs
-    - /swagger-ui.html
-  obfuscate:
-    headers:
-      - Authorization
-      - X-Auth-User
-      - X-Request-Security-Context
+#logbook:
+  #exclude:
+    #- /health
+    #- /metrics
+    #- /favicon.ico
+    #- /swagger-resources/**
+    #- /webjars/**
+    #- /v2/api-docs
+    #- /swagger-ui.html
+  #obfuscate:
+    #headers:
+      #- Authorization
+      #- X-Auth-User
+      #- X-Request-Security-Context
 
 #management:
  # endpoints:
